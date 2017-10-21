@@ -26,5 +26,8 @@ describe('_', () => {
     it('returns the first x number of list items', () => {
       expect(_.first([1, 2, 3, 4], 3)).to.eql([1, 2, 3]);
     });
+    it('returns the first x number of string characters', () => {
+      expect(_.first(('hello'), 3)).to.eql(['h', 'e', 'l']);
+    });
   });
 });

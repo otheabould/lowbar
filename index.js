@@ -6,7 +6,7 @@ _.identity = function(value) {
 
 _.first = function(list, n) {
   if (list && !n) return list[0];
-  return Array.isArray(list) return list.slice(0, n);
+  if (Array.isArray(list)) return list.slice(0, n);
   if (typeof list === 'string') return list.split('').slice(0, n);
 };
 

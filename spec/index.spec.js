@@ -29,5 +29,12 @@ describe('_', () => {
     it('returns the first x number of string characters', () => {
       expect(_.first(('hello'), 3)).to.eql(['h', 'e', 'l']);
     });
+    it('returns undefined for invalid arguments', () => {
+      expect(_.first({1: 2})).to.equal(undefined);
+      expect(_.first(9)).to.equal(undefined);
+      expect(_.first(2)).to.equal(undefined);
+      expect(_.first()).to.equal(undefined);
+      expect(_.first(true)).to.equal(undefined);
+    });
   });
 });

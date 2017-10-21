@@ -1,0 +1,29 @@
+{
+  "name": "lowbar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./spec/",
+    "lint": "eslint ./ --fix",
+    "posttest": "npm run lint",
+    "precommit": "npm test"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "husky": "^0.13.1",
+    "sinon": "^3.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otheabould/lowbar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/otheabould/lowbar/issues"
+  },
+  "homepage": "https://github.com/otheabould/lowbar#readme"
+}

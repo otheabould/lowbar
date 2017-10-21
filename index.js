@@ -18,10 +18,14 @@ _.last = function(list, n) {
   : list.split('').slice(- n);
 };
 
-_.each = function(list, iteratee, context) {
-  if (list.length) {
+_.each = function(list, iteratee, context = this) {
+  if (list && list.length) {
     for (let i = 0; i < list.length; i++) {
-      iteratee(list[i], i, list);
+      iteratee.call(context, list[i], i, list);
+    }
+  } else if (typeof list === 'object') {
+    for (let key in list) {
+      iteratee.call(context, list[key], key, list);
     }
   }
   return list;

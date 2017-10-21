@@ -61,13 +61,28 @@ describe('_', () => {
     });
   });
   describe('#each', () => {
-    it('iteratee gets called with each item', () => {
-      const spy = sinon.spy(console, 'log');
-       _.each([1, 2, 3], console.log);
+    it('iteratee gets called with each array item', () => {
+      const spy = sinon.spy();
+			_.each([1, 2, 3], spy);
+			expect(spy.callCount).to.equal(3);
+    });
+    it('iteratee gets called with each string character', () => {
+      const spy = sinon.spy();
+       _.each('test', spy);
+       expect(spy.callCount).to.equal(4);
+    });
+    it('iteratee gets called with each object value', () => {
+      const spy = sinon.spy();
+      _.each({one: 1, two: 2, three: 3}, spy);
       expect(spy.callCount).to.equal(3);
-      expect(spy.args[0][0]).to.equal(1);
-      expect(spy.args[1][0]).to.equal(2);
-      expect(spy.args[2][0]).to.equal(3);
+    });
+    it('uses context if passed', () => {
+      const spy = sinon.spy();
+      let sum = 0;
+      const getSum = function(item) { sum += context[item] };
+      const context = {a: 1, b: 2, c: 3}
+      _.each(['a', 'b', 'c'], getSum, context);
+      expect(sum).to.equal(6);
     });
   });
 });

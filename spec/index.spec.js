@@ -60,4 +60,14 @@ describe('_', () => {
       expect(_.last('hi')).to.equal('i');
     });
   });
+  describe('#each', () => {
+    it('iteratee gets called with each item', () => {
+      const spy = sinon.spy(console, 'log');
+       _.each([1, 2, 3], console.log);
+      expect(spy.callCount).to.equal(3);
+      expect(spy.args[0][0]).to.equal(1);
+      expect(spy.args[1][0]).to.equal(2);
+      expect(spy.args[2][0]).to.equal(3);
+    });
+  });
 });

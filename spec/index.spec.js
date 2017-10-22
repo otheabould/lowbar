@@ -236,5 +236,13 @@ describe('_', () => {
       expect(_.map(true)).to.eql([]);
       expect(_.map(99)).to.eql([]);
     });
+    it('uses context when passed as an arguments', () => {
+      const arr = [1, 2, 3, 4];
+      const context = [2, 2, 2, 2];
+      const iteratee = function(item, i) {
+        return item * this[i];
+      }
+      expect(_.map(arr, iteratee, context)).to.eql([2, 4, 6, 8]);
+    });
   });
 });

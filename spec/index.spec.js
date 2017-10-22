@@ -232,5 +232,9 @@ describe('_', () => {
       const plusA = item => item + 'A';
       expect(_.map(str, plusA)).to.eql(['aA', 'bA', 'cA']);
     });
+    it('returns an empty array for invalid arguments', () => {
+      expect(_.map(true)).to.eql([]);
+      expect(_.map(99)).to.eql([]);
+    });
   });
 });

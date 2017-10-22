@@ -57,26 +57,34 @@ _.index = function(list, value, isSorted) {
 
 _.filter = function(list, predicate = _.identity, context = this) {
   const filtered = [];
-  _.each(list, (item, index, i, list) => {
-    if (predicate.call(context, item, index, i, list)) filtered.push(item);
+  _.each(list, (item, i, list) => {
+    if (predicate.call(context, item, i, list)) filtered.push(item);
   });
   return filtered;
 };
 
 _.reject = function(list, predicate = _.identity, context = this) {
   const rejected = [];
-  _.each(list, (item, index, i, list) => {
-    if (!predicate.call(context, item, index, i, list)) rejected.push(item);
+  _.each(list, (item, i, list) => {
+    if (!predicate.call(context, item, i, list)) rejected.push(item);
   });
   return rejected;
 };
 
-_.uniq = function(list, isSorted, iteratee) {
-  const result = [];
+_.uniq = function(list, isSorted) {
+  const unique = [];
   _.each(list, (item) => {
-    if (_.index(result, item, isSorted) === -1) result.push(item);
+    if (_.index(unique, item, isSorted) === -1) unique.push(item);
   });
-  return result;
-}
+  return unique;
+};
+
+_.map = function(list, iteratee = _.identity, context = this) {
+  const mapped = [];
+  _.each(list, (item, i, list) => {
+    mapped.push(iteratee.call(context, item, i, list))
+  });
+  return mapped;
+};
 
 module.exports = _;

@@ -161,5 +161,9 @@ describe('_', () => {
       const isE = item => item === 'e';
       expect(_.reject([1, 2, 'e'], isE)).to.eql([1, 2]);
     });
+    it('filters the object values that do not pass the predicate', () => {
+      const isE = item => item === 'e';
+      expect(_.reject({ 1: 1, 2: 2, 3: 'e' }, isE)).to.eql([1, 2]);
+    });
   });
 });

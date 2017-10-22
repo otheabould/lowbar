@@ -85,4 +85,10 @@ describe('_', () => {
       expect(sum).to.equal(6);
     });
   });
+  describe('#index', () => {
+    it('returns the first index of the passed value', () => {
+      expect(_.index([1, 2, 6, 5], 6)).to.equal(2);
+      expect(_.index([1, 2, 6, 6], 6)).to.equal(2);
+    })
+  })
 });

@@ -31,4 +31,16 @@ _.each = function(list, iteratee, context = this) {
   return list;
 }
 
+_.index = (list, value, isSorted) => {
+  if (Array.isArray(list) || typeof list === 'string') {
+    for (let i = 0; i < list.length; i++) {
+      if (list[i] === value) {
+        return i;
+      }
+    }
+  }
+  return -1;
+};
+
+//use identity in filter if predicate is not present
 module.exports = _;

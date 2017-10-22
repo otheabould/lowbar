@@ -187,8 +187,16 @@ describe('_', () => {
     it('uses context when passed', () => {
       const isContext = function(item, i){
         return item === this[i];
-      } ;
+      };
       expect(_.reject([1, 2, 3, 4], isContext, [1, 7, 3, 6])).to.eql([2, 4]);
+    });
+  });
+  describe('#uniq', () => {
+    it('filters the duplicates from an array', () => {
+      expect(_.uniq([1, 1, 2, 3, 3])).to.eql([1, 2, 3]);
+    });
+    it('filters the duplicates from a string', () => {
+      expect(_.uniq('test')).to.eql(['t', 'e', 's']);
     });
   });
 });

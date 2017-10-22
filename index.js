@@ -69,6 +69,14 @@ _.reject = function(list, predicate = _.identity, context = this) {
     if (!predicate.call(context, item, index, i, list)) rejected.push(item);
   });
   return rejected;
+};
+
+_.uniq = function(list, isSorted, iteratee) {
+  const result = [];
+  _.each(list, (item) => {
+    if (_.index(result, item, isSorted) === -1) result.push(item);
+  });
+  return result;
 }
 
 module.exports = _;

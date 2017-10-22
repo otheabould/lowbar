@@ -124,5 +124,10 @@ describe('_', () => {
       const isE = item => item === 'e';
       expect(_.filter('abcee', isE)).to.eql(['e', 'e']);
     });
+    it('does not mutate the original array', () => {
+      const isE = item => item === 'e';
+      expect(_.filter(['e', 'e', 'e'], isE)).to.eql(['e', 'e', 'e']);
+      expect(_.filter(['e', 'e', 'e'], isE)).to.not.equal(['e', 'e', 'e']);
+    });
   });
 });

@@ -171,5 +171,8 @@ describe('_', () => {
       expect(_.reject(arr, isE)).to.eql(['a', 'b']);
       expect(_.reject(arr, isE)).to.not.equal(['a', 'b']);
     });
+    it('if no predicate is passed, filter falsy values', () => {
+      expect(_.reject([0, 1, 0])).to.eql([0, 0]);
+    });
   });
 });

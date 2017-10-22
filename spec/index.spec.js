@@ -376,7 +376,7 @@ describe('_', () => {
       const isEven = item => item % 2 === 0;
       expect(_.some([7, 9], isEven)).to.equal(false);
     });
-    it('returns true if a object values passes the predicate', () => {
+    it('returns true if an object value passes the predicate', () => {
       const isEven = item => item % 2 === 0;
       expect(_.some({a: 2, b: 4, c: 6}, isEven)).to.equal(true);
       expect(_.some({a: 2, b: 4, c: 5}, isEven)).to.equal(true);
@@ -384,6 +384,14 @@ describe('_', () => {
     it('returns false when 0 object values pass the predicate', () => {
       const isEven = item => item % 2 === 0;
       expect(_.some({a: 1, b: 3, c: 5}, isEven)).to.equal(false);
+    });
+    it('returns true if a string character passes the predicate', () => {
+      const isE = item => item  === 'e';
+      expect(_.some('hhhe', isE)).to.equal(true);
+    });
+    it('returns false when 0 string characters pass the predicate', () => {
+      const isE = item => item  === 'e';
+      expect(_.some('hhh', isE)).to.equal(false);
     });
   });
 });

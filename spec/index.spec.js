@@ -331,5 +331,9 @@ describe('_', () => {
       const isEven = item => item % 2 === 0;
       expect(_.every([2, 4, 6, 8], isEven)).to.equal(true);
     });
+    it('when one or more list items fail the predicate, return false', () => {
+      const isEven = item => item % 2 === 0;
+      expect(_.every([2, 4, 6, 8, 9], isEven)).to.equal(false);
+    });
   })
 });

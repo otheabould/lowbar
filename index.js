@@ -22,17 +22,30 @@ _.each = function(list, iteratee, context = this) {
   if (list && list.length) {
     for (let i = 0; i < list.length; i++) {
       iteratee.call(context, list[i], i, list);
-    }
+    };
   } else if (typeof list === 'object') {
     for (let key in list) {
       iteratee.call(context, list[key], key, list);
-    }
-  }
+    };
+  };
   return list;
-}
+};
 
-_.index = (list, value, isSorted) => {
-  if (Array.isArray(list) || typeof list === 'string') {
+binarySearch =  function(list, value) {
+  let low = 0, high = list.length - 1;
+  while (low <= high) {
+    let mid = Math.floor((low + high) / 2);
+    if (list[mid] === value) return mid;
+    list[mid] < value 
+      ? low = mid + 1
+      : high = mid - 1;
+  };
+  return -1;
+};
+
+_.index = function(list, value, isSorted) {
+  if (list && list.length) {
+    if (isSorted) return binarySearch(list, value);
     for (let i = 0; i < list.length; i++) {
       if (list[i] === value) {
         return i;

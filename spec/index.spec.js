@@ -148,5 +148,18 @@ describe('_', () => {
       } ;
       expect(_.filter([1, 2, 3, 4], isContext, [1, 7, 3, 6])).to.eql([1, 3]);
     });
+    it('returns an empty array for invalid arguments', () => {
+      expect(_.filter(true)).to.eql([]);
+    });
+  });
+  describe('#reject', () => {
+    it('filters the array items that do not pass the predicate', () => {
+      const isEven = item => item % 2 === 0;
+      expect(_.reject([1, 2, 3], isEven)).to.eql([1, 3]);
+    });
+    it('filters the string characters that do not pass the predicate', () => {
+      const isE = item => item === 'e';
+      expect(_.reject([1, 2, 'e'], isE)).to.eql([1, 2]);
+    });
   });
 });

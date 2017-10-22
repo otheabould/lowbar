@@ -49,19 +49,26 @@ _.index = function(list, value, isSorted) {
     for (let i = 0; i < list.length; i++) {
       if (list[i] === value) {
         return i;
-      }
-    }
-  }
+      };
+    };
+  };
   return -1;
 };
 
-//use identity in filter if predicate is not present
 _.filter = function(list, predicate = _.identity, context = this) {
-  const result = [];
+  const filtered = [];
   _.each(list, (item, index, i, list) => {
-    if (predicate.call(context, item, index, i, list)) result.push(item);
+    if (predicate.call(context, item, index, i, list)) filtered.push(item);
   });
-  return result;
+  return filtered;
+};
+
+_.reject = function(list, predicate = _.identity, context = this) {
+  const rejected = [];
+  _.each(list, (item, index, i, list) => {
+    if (!predicate.call(context, item, index, i, list)) rejected.push(item);
+  });
+  return rejected;
 }
 
 module.exports = _;

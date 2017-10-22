@@ -212,8 +212,25 @@ describe('_', () => {
     });
   });
   describe('#map', () => {
-    it('creates a new array the same length', function() {
-      expect(_.map([1,2,3]).length).to.equal(3);
+    it('returns a new array of the same length', () => {
+      const arr = [1, 2, 3];
+      expect(_.map(arr).length).to.equal(3);
+      expect(_.map(arr)).to.not.equal(arr);
     });
-  })
+    it('returns a new array with transformed array items', () => {
+      const arr = [1, 2, 3];
+      const double = item => item * 2;
+      expect(_.map(arr, double)).to.eql([2, 4, 6]);
+    });
+    it('returns a new array with transformed object values', () => {
+      const obj = { a: 1, b: 2, c: 3 };
+      const double = item => item * 2;
+      expect(_.map(obj, double)).to.eql([2, 4, 6]);
+    });
+    it('returns a new array with transformed string characters', () => {
+      const str = 'abc';
+      const plusA = item => item + 'A';
+      expect(_.map(str, plusA)).to.eql(['aA', 'bA', 'cA']);
+    });
+  });
 });

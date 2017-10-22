@@ -351,5 +351,13 @@ describe('_', () => {
       const isE = item => item === 'e';
       expect(_.every('ea', isE)).to.equal(false);
     });
+    it('uses context when passed', () => {
+      const arr = [1, 2, 3, 4];
+      const context = [1, 2, 3, 4];
+      const isEqual = function(item, i) {
+        return item === this[i];
+      };
+      expect(_.every(arr, isEqual, context)).to.equal(true);
+    });
   })
 });

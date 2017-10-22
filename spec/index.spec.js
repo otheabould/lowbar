@@ -102,11 +102,17 @@ describe('_', () => {
       expect(_.index(true, 'u')).to.equal(-1);
       expect(_.index()).to.equal(-1);
     });
-    it('uses a binary search method if the list is Sorted', () => {
+    it('uses a binary search method if the array is Sorted', () => {
       const sortedArr = [1, 2, 3, 4, 5];
       const arr = [1, 5, 7, 8, 3];
-     expect(_.index(arr, 3, true)).to.equal(-1);
+      expect(_.index(arr, 3, true)).to.equal(-1);
       expect(_.index(sortedArr, 3, true)).to.equal(2);
+    });
+    it('uses a binary search method if the string is Sorted', () => {
+      const sortedStr = 'abcd';
+      const str = 'aefb';
+      expect(_.index(sortedStr, 'c', true)).to.equal(2);
+      expect(_.index(str, 'b', true)).to.equal(-1);
     });
   });
 });

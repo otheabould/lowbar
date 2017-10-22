@@ -335,5 +335,13 @@ describe('_', () => {
       const isEven = item => item % 2 === 0;
       expect(_.every([2, 4, 6, 8, 9], isEven)).to.equal(false);
     });
+    it('when every object value passes the predicate, return true', () => {
+      const isEven = item => item % 2 === 0;
+      expect(_.every({a: 2, b: 4, c: 6}, isEven)).to.equal(true);
+    });
+    it('when one or more object values fail the predicate, return false', () => {
+      const isEven = item => item % 2 === 0;
+      expect(_.every({a: 2, b: 4, c: 5}, isEven)).to.equal(false);
+    });
   })
 });

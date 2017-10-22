@@ -108,7 +108,7 @@ _.reduce = function(list, iteratee, memo, context = this) {
   return memo;
 };
 
-_.every = function(list, predicate, context) {
+_.every = function(list, predicate = _.identity, context = this) {
   if (list && list.length) {
     for (let i = 0; i < list.length; i++) {
       if(!predicate.call(context, list[i], i, list)) return false;
@@ -120,5 +120,19 @@ _.every = function(list, predicate, context) {
   };
   return true;
 };
+
+_.some = function(list, predicate = _.identity, context = this) {
+  if (list && list.length) {
+    for (let i = 0; i < list.length; i++) {
+      if(predicate.call(context, list[i], i, list)) return true;
+    };
+  } else if (typeof list === 'object') {
+    for (let key in list) {
+      if(predicate.call(context, list[key], key, list)) return true;
+    };
+  };
+  return false;
+};
+
 
 module.exports = _;

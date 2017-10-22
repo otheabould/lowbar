@@ -327,27 +327,27 @@ describe('_', () => {
     });
   });
   describe('#every', () => {
-    it('when every list item passes the predicate, return true', () => {
+    it('returns true when every string array item the predicate', () => {
       const isEven = item => item % 2 === 0;
       expect(_.every([2, 4, 6, 8], isEven)).to.equal(true);
     });
-    it('when one or more list items fail the predicate, return false', () => {
+    it('returns false when a list item fails the predicate', () => {
       const isEven = item => item % 2 === 0;
       expect(_.every([2, 4, 6, 8, 9], isEven)).to.equal(false);
     });
-    it('when every object value passes the predicate, return true', () => {
+    it('returns true when every object value passes the predicate', () => {
       const isEven = item => item % 2 === 0;
       expect(_.every({a: 2, b: 4, c: 6}, isEven)).to.equal(true);
     });
-    it('when one or more object value fails the predicate, return false', () => {
+    it('returns false when a object value fails the predicate', () => {
       const isEven = item => item % 2 === 0;
       expect(_.every({a: 2, b: 4, c: 5}, isEven)).to.equal(false);
     });
-    it('when every string character passes the predicate, return true', () => {
+    it('returns true when every string character passes the predicate', () => {
       const isE = item => item === 'e';
       expect(_.every('eeeee', isE)).to.equal(true);
     });
-    it('when one or more string character fails the predicate, return false', () => {
+    it('returns false when a string character fails the predicate', () => {
       const isE = item => item === 'e';
       expect(_.every('ea', isE)).to.equal(false);
     });
@@ -359,5 +359,17 @@ describe('_', () => {
       };
       expect(_.every(arr, isEqual, context)).to.equal(true);
     });
+    it('predicate === _.identity if not present', () => {
+      expect(_.every('ea')).to.equal(true);
+      expect(_.every([0])).to.equal(false);
+    });
   })
+  describe('#some', () => {
+    it('takes a list and a predicate function. If no predicate is passed, return true', () => {
+      expect(_.some([1, 2, 3])).to.equal(true);
+    });
+    it('returns false if no list is passed', () => {
+      expect(_.some()).to.equal(false);
+    });
+  });
 });

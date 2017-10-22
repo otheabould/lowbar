@@ -115,4 +115,14 @@ describe('_', () => {
       expect(_.index(str, 'b', true)).to.equal(-1);
     });
   });
+  describe('#filter', () => {
+    it('filters array items that pass the predicate', () => {
+      const isEven = item => item % 2 === 0;
+      expect(_.filter([1, 2, 4], isEven)).to.eql([2, 4]);
+    });
+    it('filters string characters that pass the predicate', () => {
+      const isE = item => item === 'e';
+      expect(_.filter('abcee', isE)).to.eql(['e', 'e']);
+    });
+  });
 });

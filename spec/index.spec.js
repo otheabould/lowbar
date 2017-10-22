@@ -262,7 +262,20 @@ describe('_', () => {
     expect(_.contains([1, 2, 3], 7)).to.equal(false);
   });
   it('returns false for invalid arguments', () => {
-    expect(_.contains(true, 'f')).to.equal(false);
+    expect(_.contains(true)).to.equal(false);
     expect(_.contains(123, 7)).to.equal(false);
+  });
+  it('starts fromIndex if passed as arguments', () => {
+    expect(_.contains([1, 2, 3, 4, 5, 6, 7], 1, 4)).to.equal(false);
+  });
+  describe('#pluck', () => {
+    it('populates an array with undefined if the list passed isn\'t an array of objects', () => {
+      expect(_.pluck(['hi', 'hi'])).to.eql([undefined,undefined]);
+      expect(_.pluck([1,2,3])).to.eql([undefined,undefined,undefined]);
+    });
+    it('returns an array with the specified property values', () => {
+      const list = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
+      expect(_.pluck(list, 'name')).to.eql(['moe', 'larry', 'curly']);
+    });
   });
 });

@@ -88,8 +88,13 @@ _.map = function(list, iteratee = _.identity, context = this) {
 };
 
 _.contains = function(list, value, fromIndex) {
-  return _.index(list, value) >= 0;
-}
+  return fromIndex
+    ? _.index(list.slice(fromIndex), value) >= 0
+    : _.index(list, value) >= 0;
+};
 
+_.pluck = function(list, key) {
+  return _.map(list, obj => obj[key]);
+}
 
 module.exports = _;

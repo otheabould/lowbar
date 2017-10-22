@@ -165,5 +165,11 @@ describe('_', () => {
       const isE = item => item === 'e';
       expect(_.reject({ 1: 1, 2: 2, 3: 'e' }, isE)).to.eql([1, 2]);
     });
+    it('does not mutate the original array', () => {
+      const isE = item => item === 'e';
+      const arr = ['a', 'b'];
+      expect(_.reject(arr, isE)).to.eql(['a', 'b']);
+      expect(_.reject(arr, isE)).to.not.equal(['a', 'b']);
+    });
   });
 });

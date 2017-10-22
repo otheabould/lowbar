@@ -119,6 +119,7 @@ describe('_', () => {
     it('filters array items that pass the predicate', () => {
       const isEven = item => item % 2 === 0;
       expect(_.filter([1, 2, 4], isEven)).to.eql([2, 4]);
+      expect(_.filter([1, 3, 7], isEven)).to.eql([]);
     });
     it('filters string characters that pass the predicate', () => {
       const isE = item => item === 'e';
@@ -137,6 +138,15 @@ describe('_', () => {
       const isE = item => item === 'e';
       expect(_.filter(['e', 'e', 'e'], isE)).to.eql(['e', 'e', 'e']);
       expect(_.filter(['e', 'e', 'e'], isE)).to.not.equal(['e', 'e', 'e']);
+    });
+    it('if no predicate is passed, filter truthy values', () => {
+      expect(_.filter([0, 1, 2, false])).to.eql([1, 2]);
+    });
+    it('uses context when passed', () => {
+      const isContext = function(item, i){
+        return item === this[i];
+      } ;
+      expect(_.filter([1, 2, 3, 4], isContext, [1, 7, 3, 6])).to.eql([1, 3]);
     });
   });
 });

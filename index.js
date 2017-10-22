@@ -56,10 +56,10 @@ _.index = function(list, value, isSorted) {
 };
 
 //use identity in filter if predicate is not present
-_.filter = function(list, predicate, context) {
+_.filter = function(list, predicate = _.identity, context = this) {
   const result = [];
   _.each(list, (item, index, i, list) => {
-    if (predicate(item, index, i, list)) result.push(item);
+    if (predicate.call(context, item, index, i, list)) result.push(item);
   });
   return result;
 }

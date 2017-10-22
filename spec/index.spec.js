@@ -365,11 +365,16 @@ describe('_', () => {
     });
   })
   describe('#some', () => {
-    it('takes a list and a predicate function. If no predicate is passed, return true', () => {
-      expect(_.some([1, 2, 3])).to.equal(true);
-    });
     it('returns false if no list is passed', () => {
       expect(_.some()).to.equal(false);
+    });
+    it('returns true if a list item passes the predicate', () => {
+      const isEven = item => item % 2 === 0;
+      expect(_.some([2, 4, 6, 9], isEven)).to.equal(true);
+    });
+    it('returns false when 0 list items pass the predicate', () => {
+      const isEven = item => item % 2 === 0;
+      expect(_.some([7, 9], isEven)).to.equal(false);
     });
   });
 });

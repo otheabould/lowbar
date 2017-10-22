@@ -316,6 +316,14 @@ describe('_', () => {
       it('creates a count object', () => {
         expect(_.reduce(['a', 'b', 'a', 'c', 'c'], createCount, {})).to.eql({a: 2, b: 1, c: 2});
       });
+      it('uses context when present', () => {
+        const arr = [1, 1, 1];
+        const context = [1, 1, 1];
+        const iteratee = function(acc, item, i) {
+          return acc + item + this[i];
+        };
+        expect(_.reduce(arr, iteratee, 0, context)).to.equal(6);
+      });
     });
   });
 });

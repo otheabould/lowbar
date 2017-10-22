@@ -97,13 +97,13 @@ _.pluck = function(list, key) {
   return _.map(list, obj => obj[key]);
 };
 
-_.reduce = (list, iteratee, memo) => {
+_.reduce = (list, iteratee, memo, context = this) => {
   let memoUnpresent = memo === undefined;
   _.each(list, (item, i, list) => {
     if (memoUnpresent) {
       memo = item;
       memoUnpresent = false;
-    } else memo = iteratee(memo, item, i, list);
+    } else memo = iteratee.call(context, memo, item, i, list);
   });
   return memo;
 };

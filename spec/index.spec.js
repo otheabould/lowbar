@@ -142,14 +142,14 @@ describe('_', () => {
     it('if no predicate is passed, filter truthy values', () => {
       expect(_.filter([0, 1, 2, false])).to.eql([1, 2]);
     });
+    it('returns an empty array for invalid arguments', () => {
+      expect(_.filter(true)).to.eql([]);
+    });
     it('uses context when passed', () => {
       const isContext = function(item, i){
         return item === this[i];
       } ;
       expect(_.filter([1, 2, 3, 4], isContext, [1, 7, 3, 6])).to.eql([1, 3]);
-    });
-    it('returns an empty array for invalid arguments', () => {
-      expect(_.filter(true)).to.eql([]);
     });
   });
   describe('#reject', () => {
@@ -173,6 +173,22 @@ describe('_', () => {
     });
     it('if no predicate is passed, filter falsy values', () => {
       expect(_.reject([0, 1, 0])).to.eql([0, 0]);
+    });
+    it('returs an empty array for invalid arguments', () => {
+      expect(_.reject(true)).to.eql([]);
+      expect(_.reject(123)).to.eql([]);
+      expect(_.reject()).to.eql([]);
+    });
+    it('returs an empty array for invalid arguments', () => {
+      expect(_.reject(true)).to.eql([]);
+      expect(_.reject(123)).to.eql([]);
+      expect(_.reject()).to.eql([]);
+    });
+    it('uses context when passed', () => {
+      const isContext = function(item, i){
+        return item === this[i];
+      } ;
+      expect(_.reject([1, 2, 3, 4], isContext, [1, 7, 3, 6])).to.eql([2, 4]);
     });
   });
 });

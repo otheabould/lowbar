@@ -198,5 +198,9 @@ describe('_', () => {
     it('filters the duplicates from a string', () => {
       expect(_.uniq('test')).to.eql(['t', 'e', 's']);
     });
+    it('does not mutate the original array', () => {
+      expect(_.uniq([1, 2, 3])).to.eql([1, 2, 3]);
+      expect(_.uniq([1, 2, 3])).to.not.equal([1, 2, 3]);
+    });
   });
 });

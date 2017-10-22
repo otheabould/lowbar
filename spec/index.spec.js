@@ -261,4 +261,8 @@ describe('_', () => {
     expect(_.contains('hello', 'f')).to.equal(false);
     expect(_.contains([1, 2, 3], 7)).to.equal(false);
   });
+  it('returns false for invalid arguments', () => {
+    expect(_.contains(true, 'f')).to.equal(false);
+    expect(_.contains(123, 7)).to.equal(false);
+  });
 });

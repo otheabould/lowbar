@@ -124,6 +124,15 @@ describe('_', () => {
       const isE = item => item === 'e';
       expect(_.filter('abcee', isE)).to.eql(['e', 'e']);
     });
+    it('filters object values that pass the predicate', () => {
+      const isEven = item => item % 2 === 0;
+      expect(_.filter({a: 1, b: 2, c: 3}, isEven)).to.eql([2]);
+    });
+    it('does not mutate the original array', () => {
+      const isE = item => item === 'e';
+      expect(_.filter(['e', 'e', 'e'], isE)).to.eql(['e', 'e', 'e']);
+      expect(_.filter(['e', 'e', 'e'], isE)).to.not.equal(['e', 'e', 'e']);
+    });
     it('does not mutate the original array', () => {
       const isE = item => item === 'e';
       expect(_.filter(['e', 'e', 'e'], isE)).to.eql(['e', 'e', 'e']);

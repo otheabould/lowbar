@@ -89,8 +89,8 @@ _.map = function(list, iteratee = _.identity, context = this) {
 
 _.contains = function(list, value, fromIndex) {
   return fromIndex
-    ? _.index(list.slice(fromIndex), value) >= 0
-    : _.index(list, value) >= 0;
+    ? _.some(list.slice(fromIndex), item => item === value)
+    : _.some(list, item => item === value);
 };
 
 _.pluck = function(list, key) {

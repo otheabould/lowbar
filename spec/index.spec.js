@@ -252,10 +252,10 @@ describe('_', () => {
     it('returns true if for a string containing the value', () => {
       expect(_.contains('hello', 'h')).to.equal(true);
     });
-    // it('works for objects', function() {
-    //   expect(_.contains({1: 'h', 2: 'e', 3: 'l', 4: 'l', 5: 'o'}, 'h')).to.equal(true);
-    //   expect(_.contains({1: 'h', 2: 'e', 3: 'l', 4: 'o'}, 'p')).to.equal(false);
-    // });
+    it('works for objects', function() {
+      expect(_.contains({1: 'h', 2: 'e', 3: 'l', 4: 'l', 5: 'o'}, 'h')).to.equal(true);
+      expect(_.contains({1: 'h', 2: 'e', 3: 'l', 4: 'o'}, 'p')).to.equal(false);
+    });
   });
   it('returns false if the list does not contain the value', () => {
     expect(_.contains('hello', 'f')).to.equal(false);
@@ -400,6 +400,13 @@ describe('_', () => {
         return item === this[i];
       };
       expect(_.some(arr, isEqual, context)).to.equal(true);
+    });
+    it('predicate === _.identity if not present', () => {
+      expect(_.some(false)).to.equal(false);
+      expect(_.some([0, 1])).to.equal(true);
+    });
+    describe('#extends', () => {
+
     });
   });
 });

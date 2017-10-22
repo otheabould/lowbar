@@ -313,7 +313,9 @@ describe('_', () => {
       it('concatinates arrays', () => {
         expect(_.reduce([[1], [2], [3]], concat)).to.eql([1, 2, 3]);
       });
-     
+      it('creates a count object', () => {
+        expect(_.reduce(['a', 'b', 'a', 'c', 'c'], createCount, {})).to.eql({a: 2, b: 1, c: 2});
+      });
     });
   });
 });

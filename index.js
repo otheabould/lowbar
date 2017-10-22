@@ -97,15 +97,15 @@ _.pluck = function(list, key) {
   return _.map(list, obj => obj[key]);
 };
 
-_.reduce = (list, iteratee, accumulator) => {
-  let accUnpresent = accumulator === undefined;
+_.reduce = (list, iteratee, memo) => {
+  let memoUnpresent = memo === undefined;
   _.each(list, (item, i, list) => {
-    if (accUnpresent) {
-      accumulator = item;
-      accUnpresent = false;
-    } else accumulator = iteratee(accumulator, item, i, list);
+    if (memoUnpresent) {
+      memo = item;
+      memoUnpresent = false;
+    } else memo = iteratee(memo, item, i, list);
   });
-  return accumulator;
+  return memo;
 };
 
 module.exports = _;

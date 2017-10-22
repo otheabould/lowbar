@@ -310,6 +310,9 @@ describe('_', () => {
       it('calculates the sum of object values without accumulator present', () => {
         expect(_.reduce({a: 1, b: 2, c: 3}, sum)).to.equal(6);
       });
+      it('concatinates arrays', () => {
+        expect(_.reduce([[1], [2], [3]], concat)).to.eql([1, 2, 3]);
+      });
      
     });
   });

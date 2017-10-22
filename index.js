@@ -97,7 +97,7 @@ _.pluck = function(list, key) {
   return _.map(list, obj => obj[key]);
 };
 
-_.reduce = (list, iteratee, memo, context = this) => {
+_.reduce = function(list, iteratee, memo, context = this) {
   let memoUnpresent = memo === undefined;
   _.each(list, (item, i, list) => {
     if (memoUnpresent) {
@@ -106,6 +106,19 @@ _.reduce = (list, iteratee, memo, context = this) => {
     } else memo = iteratee.call(context, memo, item, i, list);
   });
   return memo;
+};
+
+_.every = function(list, predicate, context) {
+  if (list && list.length) {
+    for (let i = 0; i < list.length; i++) {
+      if(!predicate.call(context, list[i], i, list)) return false;
+    };
+  } else if (typeof list === 'object') {
+    for (let key in list) {
+      if(!predicate.call(context, list[key], key, list)) return false;
+    };
+  };
+  return true;
 };
 
 module.exports = _;

@@ -278,4 +278,39 @@ describe('_', () => {
       expect(_.pluck(list, 'name')).to.eql(['moe', 'larry', 'curly']);
     });
   });
+  describe('#pluck', () => {
+    it('populates an array with undefined if the list passed isn\'t an array of objects', () => {
+      expect(_.pluck(['hi', 'hi'])).to.eql([undefined,undefined]);
+      expect(_.pluck([1,2,3])).to.eql([undefined,undefined,undefined]);
+    });
+    it('returns an array with the specified property values', () => {
+      const list = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
+      expect(_.pluck(list, 'name')).to.eql(['moe', 'larry', 'curly']);
+    });
+    describe('#reduce', function () {
+      const sum = (acc, num) => acc + num;
+      const concat = (acc, item) => acc.concat(item);
+      const createCount = (acc, item) => {
+        acc.hasOwnProperty(item) ? acc[item] += 1 : acc[item] = 1;
+        return acc;
+      };
+      
+      it('is a function', () => {
+        expect(_.reduce).to.be.a('function');
+      });
+      it('calculates the sum of an array of numbers with accumulator present', () => {
+        expect(_.reduce([1, 2, 3], sum, 0)).to.equal(6);
+      });
+      it('calculates the sum of an array of numbers without accumulator present', () => {
+        expect(_.reduce([1, 2, 3], sum)).to.equal(6);
+      });
+      it('calculates the sum of object values with accumulator present', () => {
+        expect(_.reduce({a: 1, b: 2, c: 3}, sum, 0)).to.equal(6);
+      });
+      it('calculates the sum of object values without accumulator present', () => {
+        expect(_.reduce({a: 1, b: 2, c: 3}, sum)).to.equal(6);
+      });
+     
+    });
+  });
 });

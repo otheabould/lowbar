@@ -95,6 +95,17 @@ _.contains = function(list, value, fromIndex) {
 
 _.pluck = function(list, key) {
   return _.map(list, obj => obj[key]);
-}
+};
+
+_.reduce = (list, iteratee, accumulator) => {
+  let accUnpresent = accumulator === undefined;
+  _.each(list, (item, i, list) => {
+    if (accUnpresent) {
+      accumulator = item;
+      accUnpresent = false;
+    } else accumulator = iteratee(accumulator, item, i, list);
+  });
+  return accumulator;
+};
 
 module.exports = _;

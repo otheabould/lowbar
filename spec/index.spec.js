@@ -245,4 +245,9 @@ describe('_', () => {
       expect(_.map(arr, iteratee, context)).to.eql([2, 4, 6, 8]);
     });
   });
+  describe('#contains', () => {
+    it('true if for an array containing the value', () => {
+      expect(_.contains([1, 3, 4], 3)).to.equal(true);
+    });
+  });
 });

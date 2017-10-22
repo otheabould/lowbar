@@ -87,4 +87,8 @@ _.map = function(list, iteratee = _.identity, context = this) {
   return mapped;
 };
 
+_.contains = function(list, value, fromIndex) {
+  return _.index(list, value) >= 0;
+}
+
 module.exports = _;

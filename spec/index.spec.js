@@ -404,4 +404,11 @@ describe('_', () => {
       expect(_.some([0, 1])).to.equal(true);
     });
   });
+  describe('#extends', () => {
+    it('returns the first argument', () => {
+      const destination = {};
+      const source = {};
+      expect(_.extends(destination, source)).to.equal(destination);
+    });
+  });
 });

@@ -135,4 +135,8 @@ _.some = function(list, predicate = _.identity, context = this) {
 };
 
 
+_.extends = function(destination, source) {
+  return destination;
+};
+
 module.exports = _;

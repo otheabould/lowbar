@@ -144,4 +144,8 @@ _.extends = function(destination) {
   return destination;
 };
 
+_.defaults = function(destination) {
+  return destination;
+};
+
 module.exports = _;

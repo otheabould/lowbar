@@ -420,5 +420,19 @@ describe('_', () => {
       const source = {a: 2, b: 1};
       expect(_.extends(destination, source)).to.eql({a:2, b: 1});
     });
+    it('overwrites properties that have already been passed to the destination from source', () => {
+      const destination = {a: 1};
+      const source1 = {a: 2, b: 1};
+      const source2 = {a: 3, b: 2};
+      expect(_.extends(destination, source1, source2)).to.eql(source2);
+    });
+    it('concats objects into one destination, keeping the last instance of any duplicate properties', () => {
+      const destination = {a: 1};
+      const source1 = {a: 2, b: 1};
+      const source2 = {a: 3, b: 2};
+      const source3 = {c: 7, d: 1};
+      const expected = {a: 3, b: 2, c: 7, d: 1};
+      expect(_.extends(destination, source1, source2, source3)).to.eql(expected);
+    });
   });
 });

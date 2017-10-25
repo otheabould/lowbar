@@ -457,5 +457,11 @@ describe('_', () => {
       const source = {a: 1};
       expect(_.defaults(destination, source)).to.eql({a:2});
     });
+    it('keeps the first instance found of a key', () => {
+      const destination = {};
+      const source1 = {a: 1, b: 2};
+      const source2 = {a: 2, b: 3};
+      expect(_.defaults(destination, source1, source2)).to.eql(source1);
+    });
   });
 });

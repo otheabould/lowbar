@@ -1,24 +1,24 @@
 const _ = {};
 
-_.identity = function(value) {
+_.identity = function (value) {
   return value;
 };
 
-_.first = function(list, n) {
+_.first = function (list, n) {
   if (list && !n) return list[0];
   if (list && list.length) return Array.isArray(list)
     ? list.slice(0, n)
     : list.split('').slice(0, n);
 };
 
-_.last = function(list, n) {
+_.last = function (list, n) {
   if (list && !n) return list[list.length - 1];
-  if (list && list.length) return Array.isArray(list) 
-  ? list.slice(- n)
-  : list.split('').slice(- n);
+  if (list && list.length) return Array.isArray(list)
+    ? list.slice(- n)
+    : list.split('').slice(- n);
 };
 
-_.each = function(list, iteratee, context = this) {
+_.each = function (list, iteratee, context = this) {
   if (list && list.length) {
     for (let i = 0; i < list.length; i++) {
       iteratee.call(context, list[i], i, list);
@@ -31,19 +31,19 @@ _.each = function(list, iteratee, context = this) {
   return list;
 };
 
-const binarySearch =  function(list, value) {
+const binarySearch = function (list, value) {
   let low = 0, high = list.length - 1;
   while (low <= high) {
     let mid = Math.floor((low + high) / 2);
     if (list[mid] === value) return mid;
-    list[mid] < value 
+    list[mid] < value
       ? low = mid + 1
       : high = mid - 1;
   }
   return -1;
 };
 
-_.index = function(list, value, isSorted) {
+_.index = function (list, value, isSorted) {
   if (list && list.length) {
     if (isSorted) return binarySearch(list, value);
     for (let i = 0; i < list.length; i++) {
@@ -55,7 +55,7 @@ _.index = function(list, value, isSorted) {
   return -1;
 };
 
-_.filter = function(list, predicate = _.identity, context = this) {
+_.filter = function (list, predicate = _.identity, context = this) {
   const filtered = [];
   _.each(list, (item, i, list) => {
     if (predicate.call(context, item, i, list)) filtered.push(item);
@@ -63,11 +63,11 @@ _.filter = function(list, predicate = _.identity, context = this) {
   return filtered;
 };
 
-_.reject = function(list, predicate = _.identity, context = this) {
+_.reject = function (list, predicate = _.identity, context = this) {
   return _.filter.call(context, list, _.negate(predicate));
 };
 
-_.uniq = function(list, isSorted) {
+_.uniq = function (list, isSorted) {
   const unique = [];
   _.each(list, (item) => {
     if (_.index(unique, item, isSorted) === -1) unique.push(item);
@@ -75,7 +75,7 @@ _.uniq = function(list, isSorted) {
   return unique;
 };
 
-_.map = function(list, iteratee = _.identity, context = this) {
+_.map = function (list, iteratee = _.identity, context = this) {
   const mapped = [];
   _.each(list, (item, i, list) => {
     mapped.push(iteratee.call(context, item, i, list));
@@ -83,17 +83,17 @@ _.map = function(list, iteratee = _.identity, context = this) {
   return mapped;
 };
 
-_.contains = function(list, value, fromIndex) {
+_.contains = function (list, value, fromIndex) {
   return fromIndex
     ? _.some(list.slice(fromIndex), item => item === value)
     : _.some(list, item => item === value);
 };
 
-_.pluck = function(list, key) {
+_.pluck = function (list, key) {
   return _.map(list, obj => obj[key]);
 };
 
-_.reduce = function(list, iteratee, memo, context = this) {
+_.reduce = function (list, iteratee, memo, context = this) {
   let memoUnpresent = memo === undefined;
   _.each(list, (item, i, list) => {
     if (memoUnpresent) {
@@ -104,34 +104,34 @@ _.reduce = function(list, iteratee, memo, context = this) {
   return memo;
 };
 
-_.every = function(list, predicate = _.identity, context = this) {
+_.every = function (list, predicate = _.identity, context = this) {
   if (list && list.length) {
     for (let i = 0; i < list.length; i++) {
-      if(!predicate.call(context, list[i], i, list)) return false;
+      if (!predicate.call(context, list[i], i, list)) return false;
     }
   } else if (typeof list === 'object') {
     for (let key in list) {
-      if(!predicate.call(context, list[key], key, list)) return false;
+      if (!predicate.call(context, list[key], key, list)) return false;
     }
   }
   return true;
 };
 
-_.some = function(list, predicate = _.identity, context = this) {
+_.some = function (list, predicate = _.identity, context = this) {
   if (list && list.length) {
     for (let i = 0; i < list.length; i++) {
-      if(predicate.call(context, list[i], i, list)) return true;
+      if (predicate.call(context, list[i], i, list)) return true;
     }
   } else if (typeof list === 'object') {
     for (let key in list) {
-      if(predicate.call(context, list[key], key, list)) return true;
+      if (predicate.call(context, list[key], key, list)) return true;
     }
   }
   return false;
 };
 
 
-_.extends = function(destination) {
+_.extends = function (destination) {
   _.each(arguments, source => {
     _.each(source, (value, key) => {
       destination[key] = value;
@@ -140,7 +140,7 @@ _.extends = function(destination) {
   return destination;
 };
 
-_.defaults = function(destination) {
+_.defaults = function (destination) {
   _.each(arguments, source => {
     _.each(source, (value, key) => {
       if (destination[key] === undefined)
@@ -150,7 +150,7 @@ _.defaults = function(destination) {
   return destination;
 };
 
-_.once = function(func) {
+_.once = function (func) {
   let flag = false;
   return () => {
     if (!flag) {
@@ -160,10 +160,30 @@ _.once = function(func) {
   };
 };
 
-_.negate = function(predicate) {
-  return function(){
+_.negate = function (predicate) {
+  return function () {
     return !predicate.apply(this, arguments);
   };
+};
+
+_.shuffle = function (list) {
+  let shuffled;
+  if (list && list.length) Array.isArray(list)
+    ? shuffled = list.slice(0) : shuffled = list.split('');
+  else if (typeof list === 'object') shuffled = Object.values(list);
+
+  let currentIndex = shuffled.length, temporaryValue, randomIndex;
+  
+  while (currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    temporaryValue = shuffled[currentIndex];
+    shuffled[currentIndex] = shuffled[randomIndex];
+    shuffled[randomIndex] = temporaryValue;
+  }
+
+  return shuffled;
 };
 
 module.exports = _;

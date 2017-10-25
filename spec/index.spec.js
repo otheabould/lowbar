@@ -434,5 +434,11 @@ describe('_', () => {
       const expected = {a: 3, b: 2, c: 7, d: 1};
       expect(_.extends(destination, source1, source2, source3)).to.eql(expected);
     });
+    it('any object references will point to the original place', () => {
+      const destination = {a: 1};
+      const ref = {a: 2, b: 1};
+      const source = {e: 6, ref};
+      expect(_.extends(destination, source).ref).to.equal(ref);
+    });
   });
 });

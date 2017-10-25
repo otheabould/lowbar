@@ -64,11 +64,7 @@ _.filter = function(list, predicate = _.identity, context = this) {
 };
 
 _.reject = function(list, predicate = _.identity, context = this) {
-  const rejected = [];
-  _.each(list, (item, i, list) => {
-    if (!predicate.call(context, item, i, list)) rejected.push(item);
-  });
-  return rejected;
+  return _.filter.call(context, list, _.negate(predicate));
 };
 
 _.uniq = function(list, isSorted) {

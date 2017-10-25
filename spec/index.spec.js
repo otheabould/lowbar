@@ -410,10 +410,15 @@ describe('_', () => {
       const source = {};
       expect(_.extends(destination, source)).to.equal(destination);
     });
-    it('should extend an object with the atributes of another', () => {
+    it('extends an object with the atributes of the sources', () => {
       const destination = {};
       const source = {a: 1, b: 2};
       expect(_.extends(destination, source)).to.eql({a:1, b: 2});
+    });
+    it('overwrites properties found on the destination', () => {
+      const destination = {a: 1};
+      const source = {a: 2, b: 1};
+      expect(_.extends(destination, source)).to.eql({a:2, b: 1});
     });
   });
 });

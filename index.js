@@ -145,6 +145,12 @@ _.extends = function(destination) {
 };
 
 _.defaults = function(destination) {
+  _.each(arguments, source => {
+    _.each(source, (value, key) => {
+      if (destination[key] === undefined)
+        destination[key] = value;
+    });
+  });
   return destination;
 };
 

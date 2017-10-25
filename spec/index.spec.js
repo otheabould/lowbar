@@ -447,5 +447,15 @@ describe('_', () => {
       const source = {};
       expect(_.defaults(destination, source)).to.equal(destination);
     });
+    it('copies the source\'s keys and values if they do not exist inside the destination', () => {
+      const destination = {};
+      const source = {a: 1, b: 2};
+      expect(_.defaults(destination, source)).to.eql({a:1, b: 2});
+    });
+    it('does not overwrite properties found in destination', () => {
+      const destination = {a: 2};
+      const source = {a: 1};
+      expect(_.defaults(destination, source)).to.eql({a:2});
+    });
   });
 });

@@ -22,16 +22,16 @@ _.each = function(list, iteratee, context = this) {
   if (list && list.length) {
     for (let i = 0; i < list.length; i++) {
       iteratee.call(context, list[i], i, list);
-    };
+    }
   } else if (typeof list === 'object') {
     for (let key in list) {
       iteratee.call(context, list[key], key, list);
-    };
-  };
+    }
+  }
   return list;
 };
 
-binarySearch =  function(list, value) {
+const binarySearch =  function(list, value) {
   let low = 0, high = list.length - 1;
   while (low <= high) {
     let mid = Math.floor((low + high) / 2);
@@ -39,7 +39,7 @@ binarySearch =  function(list, value) {
     list[mid] < value 
       ? low = mid + 1
       : high = mid - 1;
-  };
+  }
   return -1;
 };
 
@@ -49,9 +49,9 @@ _.index = function(list, value, isSorted) {
     for (let i = 0; i < list.length; i++) {
       if (list[i] === value) {
         return i;
-      };
-    };
-  };
+      }
+    }
+  }
   return -1;
 };
 
@@ -82,7 +82,7 @@ _.uniq = function(list, isSorted) {
 _.map = function(list, iteratee = _.identity, context = this) {
   const mapped = [];
   _.each(list, (item, i, list) => {
-    mapped.push(iteratee.call(context, item, i, list))
+    mapped.push(iteratee.call(context, item, i, list));
   });
   return mapped;
 };
@@ -112,12 +112,12 @@ _.every = function(list, predicate = _.identity, context = this) {
   if (list && list.length) {
     for (let i = 0; i < list.length; i++) {
       if(!predicate.call(context, list[i], i, list)) return false;
-    };
+    }
   } else if (typeof list === 'object') {
     for (let key in list) {
       if(!predicate.call(context, list[key], key, list)) return false;
-    };
-  };
+    }
+  }
   return true;
 };
 
@@ -125,12 +125,12 @@ _.some = function(list, predicate = _.identity, context = this) {
   if (list && list.length) {
     for (let i = 0; i < list.length; i++) {
       if(predicate.call(context, list[i], i, list)) return true;
-    };
+    }
   } else if (typeof list === 'object') {
     for (let key in list) {
       if(predicate.call(context, list[key], key, list)) return true;
-    };
-  };
+    }
+  }
   return false;
 };
 

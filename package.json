@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "pre:test": "npm run lint",
     "test": "mocha ./spec/",
+    "lint": "eslint ./",
+    "lint:fix": "npm run lint -- --fix",
     "precommit": "npm test"
   },
   "devDependencies": {

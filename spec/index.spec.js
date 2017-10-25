@@ -1,4 +1,3 @@
-const path = require('path');
 const expect = require('chai').expect;
 const sinon = require('sinon');
 
@@ -63,13 +62,13 @@ describe('_', () => {
   describe('#each', () => {
     it('iteratee gets called with each array item', () => {
       const spy = sinon.spy();
-			_.each([1, 2, 3], spy);
-			expect(spy.callCount).to.equal(3);
+      _.each([1, 2, 3], spy);
+      expect(spy.callCount).to.equal(3);
     });
     it('iteratee gets called with each string character', () => {
       const spy = sinon.spy();
-       _.each('test', spy);
-       expect(spy.callCount).to.equal(4);
+      _.each('test', spy);
+      expect(spy.callCount).to.equal(4);
     });
     it('iteratee gets called with each object value', () => {
       const spy = sinon.spy();
@@ -77,10 +76,9 @@ describe('_', () => {
       expect(spy.callCount).to.equal(3);
     });
     it('uses context if passed', () => {
-      const spy = sinon.spy();
       let sum = 0;
-      const getSum = function(item) { sum += context[item] };
-      const context = {a: 1, b: 2, c: 3}
+      const getSum = function(item) { sum += context[item]; };
+      const context = {a: 1, b: 2, c: 3};
       _.each(['a', 'b', 'c'], getSum, context);
       expect(sum).to.equal(6);
     });
@@ -241,7 +239,7 @@ describe('_', () => {
       const context = [2, 2, 2, 2];
       const iteratee = function(item, i) {
         return item * this[i];
-      }
+      };
       expect(_.map(arr, iteratee, context)).to.eql([2, 4, 6, 8]);
     });
   });
@@ -252,7 +250,7 @@ describe('_', () => {
     it('returns true if for a string containing the value', () => {
       expect(_.contains('hello', 'h')).to.equal(true);
     });
-    it('works for objects', function() {
+    it('works for objects', () => {
       expect(_.contains({1: 'h', 2: 'e', 3: 'l', 4: 'l', 5: 'o'}, 'h')).to.equal(true);
       expect(_.contains({1: 'h', 2: 'e', 3: 'l', 4: 'o'}, 'p')).to.equal(false);
     });
@@ -363,7 +361,7 @@ describe('_', () => {
       expect(_.every('ea')).to.equal(true);
       expect(_.every([0])).to.equal(false);
     });
-  })
+  });
   describe('#some', () => {
     it('returns false if no list is passed', () => {
       expect(_.some()).to.equal(false);
@@ -404,9 +402,6 @@ describe('_', () => {
     it('predicate === _.identity if not present', () => {
       expect(_.some(false)).to.equal(false);
       expect(_.some([0, 1])).to.equal(true);
-    });
-    describe('#extends', () => {
-
     });
   });
 });

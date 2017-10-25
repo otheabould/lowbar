@@ -154,4 +154,14 @@ _.defaults = function(destination) {
   return destination;
 };
 
+_.once = function(func) {
+  let flag = false;
+  return () => {
+    if (!flag) {
+      flag = true;
+      return func.apply(this, arguments);
+    }
+  };
+};
+
 module.exports = _;

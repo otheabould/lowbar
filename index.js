@@ -135,7 +135,12 @@ _.some = function(list, predicate = _.identity, context = this) {
 };
 
 
-_.extends = function(destination, source) {
+_.extends = function(destination) {
+  _.each(arguments, source => {
+    _.each(source, (value, key) => {
+      destination[key] = value;
+    });
+  });
   return destination;
 };
 

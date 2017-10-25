@@ -410,5 +410,10 @@ describe('_', () => {
       const source = {};
       expect(_.extends(destination, source)).to.equal(destination);
     });
+    it('should extend an object with the atributes of another', () => {
+      const destination = {};
+      const source = {a: 1, b: 2};
+      expect(_.extends(destination, source)).to.eql({a:1, b: 2});
+    });
   });
 });

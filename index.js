@@ -182,11 +182,8 @@ _.shuffle = function (list) {
   return array;
 };
 
-_.invoke = function (list, method) {
-  return _.reduce(list, (acc, item) => {
-    acc.push(item[method]());
-    return acc;
-  }, []);
+_.invoke = function (list, method, ...args) {
+  return _.map(list, item => item[method].apply(item, args));
 };
 
 module.exports = _;

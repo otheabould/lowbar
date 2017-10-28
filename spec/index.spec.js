@@ -521,5 +521,13 @@ describe('_', () => {
       const expected = [[1, 5, 7], [1, 2, 3]];
       expect(actual).to.eql(expected);
     });
+    it('invokes the given method with any arguments passed', () => {
+      const list = [[5, 1, 7], [3, 2, 1]];
+      const method = 'join';
+      const args = '';
+      const actual = _.invoke(list, method, args);
+      const expected = ['517', '321'];
+      expect(actual).to.eql(expected);
+    });
   });
 });

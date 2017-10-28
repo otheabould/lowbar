@@ -538,4 +538,13 @@ describe('_', () => {
       expect(actual).to.eql(expected);
     });
   });
+  describe('#sortBy', () => {
+    it('sorts an array based on what the iteratee returns', () => {
+      const list = [1, 2, 3, 4, 5, 6];
+      const iteratee = (item) => Math.sin(item);
+      const actual = _.sortBy(list, iteratee);
+      const expected = [5, 4, 6, 3, 1, 2];
+      expect(actual).to.eql(expected);
+    });
+  });
 });

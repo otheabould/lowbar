@@ -188,4 +188,8 @@ _.invoke = function (list, method, ...args) {
     : undefined);
 };
 
+_.sortBy = function (list, iteratee, context = this) {
+  return list.sort((a, b) => iteratee(a) - iteratee(b));
+};
+
 module.exports = _;

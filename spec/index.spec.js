@@ -507,5 +507,10 @@ describe('_', () => {
       expect(shuffled.length).to.equal(Object.values(list).length);
       expect(shuffled).to.not.eql(list);
     });
+    it('does not mutate the original array', () => {
+      const list = [1, 2, 3, 4, 5, 6];
+      _.shuffle(list);
+      expect(list).to.eql([1, 2, 3, 4, 5, 6]);
+    });
   });
 });

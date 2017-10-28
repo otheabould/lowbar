@@ -167,23 +167,19 @@ _.negate = function (predicate) {
 };
 
 _.shuffle = function (list) {
-  let shuffled;
-  if (list && list.length) Array.isArray(list)
-    ? shuffled = list.slice(0) : shuffled = list.split('');
-  else if (typeof list === 'object') shuffled = Object.values(list);
-
-  let currentIndex = shuffled.length, temporaryValue, randomIndex;
-  
-  while (currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    temporaryValue = shuffled[currentIndex];
-    shuffled[currentIndex] = shuffled[randomIndex];
-    shuffled[randomIndex] = temporaryValue;
+  let array;
+  if (typeof list === 'string') array = list.split('');
+  else if (Array.isArray(list)) array = list.slice(0);
+  else if (typeof list === 'object') array = Object.values(list);
+  else return [];
+  let m = array.length, t, i;
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
   }
-
-  return shuffled;
+  return array;
 };
 
 module.exports = _;

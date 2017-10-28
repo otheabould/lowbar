@@ -529,5 +529,13 @@ describe('_', () => {
       const expected = ['517', '321'];
       expect(actual).to.eql(expected);
     });
+    it('returns undefined for invalid inputs', () => {
+      const list = [{a: 5, b: 1, c: 7}, [3, 2, 1]];
+      const method = 'join';
+      const args = '';
+      const actual = _.invoke(list, method, args);
+      const expected = [undefined, '321'];
+      expect(actual).to.eql(expected);
+    });
   });
 });

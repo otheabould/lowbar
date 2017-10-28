@@ -192,4 +192,11 @@ _.sortBy = function (list, iteratee, context = this) {
   : arr.sort((a, b) => compare(iteratee.call(context, a), iteratee.call(context, b)));
 };
 
+_.zip = function (...list) {
+  return _.reduce(list, (acc, item, i) => {
+    acc[i] = _.pluck(list, i);
+    return acc;
+  }, []);
+};
+
 module.exports = _;

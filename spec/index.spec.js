@@ -571,4 +571,13 @@ describe('_', () => {
       expect(list).to.not.eql(expected);
     });
   });
+  describe('#zip', () => {
+    it('merges values with the values of the corresponding array positions', () => {
+      const list1 = [1, 2];
+      const list2 = [1, 2];
+      const actual = _.zip(list1, list2);      
+      const expected = [[1, 1], [2, 2]];
+      expect(actual).to.eql(expected);
+    });
+  });
 });

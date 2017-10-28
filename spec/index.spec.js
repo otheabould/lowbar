@@ -563,5 +563,12 @@ describe('_', () => {
       const expected = ['b', 'a'];
       expect(actual).to.eql(expected);
     });
+    it('does not mutate the orinal array', () => {
+      const list = [1, 2, 3, 4, 5, 6];
+      const iteratee = (item) => Math.sin(item);
+      _.sortBy(list, iteratee);
+      const expected = [5, 4, 6, 3, 1, 2];
+      expect(list).to.not.eql(expected);
+    });
   });
 });

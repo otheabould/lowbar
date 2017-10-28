@@ -167,19 +167,15 @@ _.negate = function (predicate) {
 };
 
 _.shuffle = function (list) {
-  let array;
-  if (typeof list === 'string') array = list.split('');
-  else if (Array.isArray(list)) array = list.slice(0);
-  else if (typeof list === 'object') array = Object.values(list);
-  else return [];
-  let m = array.length, temp, i;
+  const arr = _.map(list);
+  let m = arr.length, temp, i;
   while (m) {
     i = Math.floor(Math.random() * m--);
-    temp = array[m];
-    array[m] = array[i];
-    array[i] = temp;
+    temp = arr[m];
+    arr[m] = arr[i];
+    arr[i] = temp;
   }
-  return array;
+  return arr;
 };
 
 _.invoke = function (list, method, ...args) {
@@ -189,10 +185,11 @@ _.invoke = function (list, method, ...args) {
 };
 
 _.sortBy = function (list, iteratee, context = this) {
+  const arr = _.map(list);
   const compare = (a, b) => a < b ? - 1 : b < a ? 1 : 0;
   return typeof iteratee === 'string'
-  ? list.sort((a, b) => compare(a[iteratee], b[iteratee]))
-  : list.sort((a, b) => compare(iteratee.call(context, a), iteratee.call(context, b)));
+  ? arr.sort((a, b) => compare(a[iteratee], b[iteratee]))
+  : arr.sort((a, b) => compare(iteratee.call(context, a), iteratee.call(context, b)));
 };
 
 module.exports = _;

@@ -193,10 +193,13 @@ _.sortBy = function (list, iteratee, context = this) {
 };
 
 _.zip = function (...list) {
-  return _.reduce(list, (acc, item, i) => {
-    acc[i] = _.pluck(list, i);
-    return acc;
-  }, []);
+  const arrLength = Math.max(...list.map(arr => arr.length));
+  const length = Math.max(list.length, arrLength);
+  const zipped = Array(length);
+  for (let i = 0; i < length; i ++) {
+    zipped[i] = _.pluck(list, i);
+  }
+  return zipped;
 };
 
 module.exports = _;

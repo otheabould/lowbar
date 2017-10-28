@@ -189,7 +189,10 @@ _.invoke = function (list, method, ...args) {
 };
 
 _.sortBy = function (list, iteratee, context = this) {
-  return list.sort((a, b) => iteratee(a) - iteratee(b));
+  const compare = (a, b) => a < b ? - 1 : b < a ? 1 : 0;
+  return typeof iteratee === 'string'
+  ? list.sort((a, b) => compare(a[iteratee], b[iteratee]))
+  : list.sort((a, b) => compare(iteratee(a), iteratee(b)));
 };
 
 module.exports = _;

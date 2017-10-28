@@ -546,5 +546,12 @@ describe('_', () => {
       const expected = [5, 4, 6, 3, 1, 2];
       expect(actual).to.eql(expected);
     });
+    it('sorts an array of objects by the key given', () => {
+      const list = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
+      const iteratee = 'name';
+      const actual = _.sortBy(list, iteratee);
+      const expected = [{name: 'curly', age: 60}, {name: 'larry', age: 50}, {name: 'moe', age: 40}];
+      expect(actual).to.eql(expected);
+    });
   });
 });

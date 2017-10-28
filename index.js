@@ -192,7 +192,7 @@ _.sortBy = function (list, iteratee, context = this) {
   const compare = (a, b) => a < b ? - 1 : b < a ? 1 : 0;
   return typeof iteratee === 'string'
   ? list.sort((a, b) => compare(a[iteratee], b[iteratee]))
-  : list.sort((a, b) => compare(iteratee(a), iteratee(b)));
+  : list.sort((a, b) => compare(iteratee.call(context, a), iteratee.call(context, b)));
 };
 
 module.exports = _;

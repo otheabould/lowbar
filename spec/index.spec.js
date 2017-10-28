@@ -553,5 +553,15 @@ describe('_', () => {
       const expected = [{name: 'curly', age: 60}, {name: 'larry', age: 50}, {name: 'moe', age: 40}];
       expect(actual).to.eql(expected);
     });
+    it('uses context when passed', () => {
+      const list = ['a', 'b'];
+      const context = {a: 7, b: 1};
+      const iteratee = function(item) {
+        return this[item];
+      }; 
+      const actual = _.sortBy(list, iteratee, context);
+      const expected = ['b', 'a'];
+      expect(actual).to.eql(expected);
+    });
   });
 });

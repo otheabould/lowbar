@@ -513,4 +513,13 @@ describe('_', () => {
       expect(list).to.eql([1, 2, 3, 4, 5, 6]);
     });
   });
+  describe('#invoke', () => {
+    it('invokes the given method on each list item', () => {
+      const list = [[5, 1, 7], [3, 2, 1]];
+      const method = 'sort';
+      const actual = _.invoke(list, method);
+      const expected = [[1, 5, 7], [1, 2, 3]];
+      expect(actual).to.eql(expected);
+    });
+  });
 });

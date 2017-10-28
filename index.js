@@ -172,14 +172,21 @@ _.shuffle = function (list) {
   else if (Array.isArray(list)) array = list.slice(0);
   else if (typeof list === 'object') array = Object.values(list);
   else return [];
-  let m = array.length, t, i;
+  let m = array.length, temp, i;
   while (m) {
     i = Math.floor(Math.random() * m--);
-    t = array[m];
+    temp = array[m];
     array[m] = array[i];
-    array[i] = t;
+    array[i] = temp;
   }
   return array;
+};
+
+_.invoke = function (list, method) {
+  return _.reduce(list, (acc, item) => {
+    acc.push(item[method]());
+    return acc;
+  }, []);
 };
 
 module.exports = _;

@@ -236,4 +236,16 @@ _.difference = function (array, ...others) {
     _.every(others, other => !_.contains(other, item)));
 };
 
+_.memoize = function (func) {
+  const cache = {};
+  return function() {
+    const key = arguments[0];
+    if (!(key in cache)) {
+      cache[key] = func.apply(this, arguments);
+    }
+
+    return cache[key];
+  };
+};
+
 module.exports = _;

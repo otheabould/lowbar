@@ -624,5 +624,13 @@ describe('_', () => {
       const expected = 1;
       expect(actual).to.eql(expected);
     });
+    it('compares the result of the iteratee', () => {
+      const list = ['call', 'name', 'done'];
+      const value = 'larry';
+      const iteratee = (item) => item.slice(1);
+      const actual = _.sortedIndex(list, value, iteratee);      
+      const expected = 2;
+      expect(actual).to.eql(expected);
+    });
   });
 });

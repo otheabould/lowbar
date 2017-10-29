@@ -200,16 +200,7 @@ _.zip = function (...list) {
   }
   return zipped;
 };
-// const binarySearch = function (list, value) {
-//   let low = 0, high = list.length - 1;
-//   while (low <= high) {
-//     let mid = Math.floor((low + high) / 2);
-//     if (list[mid] === value) return mid;
-//     list[mid] < value
-//       ? low = mid + 1
-//       : high = mid - 1;
-//   }
-//   return -1;
+
 _.sortedIndex = function (list, value, iteratee = _.identity, context = this) {
   let low = 0, high = list.length - 1;
   while (low < high) {

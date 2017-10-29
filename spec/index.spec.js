@@ -607,14 +607,14 @@ describe('_', () => {
       const value = 35;
       const actual = _.sortedIndex(list, value);      
       const expected = 3;
-      expect(actual).to.eql(expected);
+      expect(actual).to.equal(expected);
     });
     it('only works on sorted lists', () => {
       const list = [70, 60, 30, 20, 50];
       const value = 35;
       const actual = _.sortedIndex(list, value);      
       const expected = 4;
-      expect(actual).to.eql(expected);
+      expect(actual).to.equal(expected);
     });
     it('iteratee can be used to compare object values', () => {
       const list = [{name: 'moe', age: 40}, {name: 'curly', age: 60}];
@@ -622,7 +622,7 @@ describe('_', () => {
       const iteratee = 'age';
       const actual = _.sortedIndex(list, value, iteratee);      
       const expected = 1;
-      expect(actual).to.eql(expected);
+      expect(actual).to.equal(expected);
     });
     it('compares the result of the iteratee', () => {
       const list = ['call', 'name', 'done'];
@@ -630,7 +630,7 @@ describe('_', () => {
       const iteratee = item => item.slice(1);
       const actual = _.sortedIndex(list, value, iteratee);      
       const expected = 2;
-      expect(actual).to.eql(expected);
+      expect(actual).to.equal(expected);
     });
     it('uses context when passed', () => {
       const list = ['10', '50', '1'];
@@ -641,6 +641,14 @@ describe('_', () => {
       const context = {10: 1, 50: 5, 1: 10};
       const actual = _.sortedIndex(list, value, iteratee, context);      
       const expected = 2;
+      expect(actual).to.equal(expected);
+    });
+  });
+  describe('#flatten', () => {
+    it('concatenates nested arrays into a one dimentional copy', () => {
+      const list = [1, [2], [3, [[4]]]];
+      const actual = _.flatten(list);      
+      const expected = [1, 2, 3, 4];
       expect(actual).to.eql(expected);
     });
   });

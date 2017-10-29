@@ -224,9 +224,13 @@ _.flatten = function (array, shallow) {
 };
 
 _.intersection = function (...list) {
-  return _.filter(list[0], (item) =>
-    _.every(list, (array) => _.contains(array, item)));
+  return _.reduce(list[0], (acc, item) => {
+    if (_.every(list, (array) => _.contains(array, item))
+      && !_.contains(acc, item)) acc.push(item);
+    return acc;
+  }, []);
 };
+
 
 
 

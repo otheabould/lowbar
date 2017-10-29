@@ -216,9 +216,11 @@ _.sortedIndex = function (list, value, iteratee = _.identity, context = this) {
 };
 
 _.flatten = function (array, shallow) {
-  return _.reduce(array, (acc, item) => Array.isArray(item)
-  ? _.flatten(acc.concat(item))
-  : acc.concat(item), []);
+  return _.reduce(array, (acc, item) => shallow
+  ? acc.concat(item) 
+  : Array.isArray(item)
+    ? _.flatten(acc.concat(item)) 
+    : acc.concat(item), []);
 };
 
 module.exports = _;

@@ -627,8 +627,19 @@ describe('_', () => {
     it('compares the result of the iteratee', () => {
       const list = ['call', 'name', 'done'];
       const value = 'larry';
-      const iteratee = (item) => item.slice(1);
+      const iteratee = item => item.slice(1);
       const actual = _.sortedIndex(list, value, iteratee);      
+      const expected = 2;
+      expect(actual).to.eql(expected);
+    });
+    it('uses context when passed', () => {
+      const list = ['10', '50', '1'];
+      const value = 7;
+      const iteratee = function (item) {
+        return this[item];
+      };
+      const context = {10: 1, 50: 5, 1: 10};
+      const actual = _.sortedIndex(list, value, iteratee, context);      
       const expected = 2;
       expect(actual).to.eql(expected);
     });

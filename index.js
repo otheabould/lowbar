@@ -207,7 +207,7 @@ _.sortedIndex = function (list, value, iteratee = _.identity, context = this) {
     let mid = Math.floor((low + high) / 2);
     const compare = typeof iteratee === 'string'
       ? list[mid][iteratee] < value[iteratee]
-      : iteratee(list[mid]) < value;
+      : iteratee.call(context, list[mid]) < value;
     compare
       ? low = mid + 1
       : high = mid;

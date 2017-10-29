@@ -31,19 +31,18 @@ _.each = function (list, iteratee, context = this) {
   return list;
 };
 
-const binarySearch = function (list, value) {
-  let low = 0, high = list.length - 1;
-  while (low <= high) {
-    let mid = Math.floor((low + high) / 2);
-    if (list[mid] === value) return mid;
-    list[mid] < value
-      ? low = mid + 1
-      : high = mid - 1;
-  }
-  return -1;
-};
-
 _.index = function (list, value, isSorted) {
+  const binarySearch = function (list, value) {
+    let low = 0, high = list.length - 1;
+    while (low <= high) {
+      let mid = Math.floor((low + high) / 2);
+      if (list[mid] === value) return mid;
+      list[mid] < value
+        ? low = mid + 1
+        : high = mid - 1;
+    }
+    return -1;
+  };
   if (list && list.length) {
     if (isSorted) return binarySearch(list, value);
     for (let i = 0; i < list.length; i++) {
@@ -200,6 +199,29 @@ _.zip = function (...list) {
     zipped[i] = _.pluck(list, i);
   }
   return zipped;
+};
+// const binarySearch = function (list, value) {
+//   let low = 0, high = list.length - 1;
+//   while (low <= high) {
+//     let mid = Math.floor((low + high) / 2);
+//     if (list[mid] === value) return mid;
+//     list[mid] < value
+//       ? low = mid + 1
+//       : high = mid - 1;
+//   }
+//   return -1;
+_.sortedIndex = function (list, value, iteratee = _.identity, context = this) {
+  let low = 0, high = list.length - 1;
+  while (low < high) {
+    let mid = Math.floor((low + high) / 2);
+    const compare = typeof iteratee === 'string'
+      ? list[mid][iteratee] < value[iteratee]
+      : iteratee(list[mid]) < value;
+    compare
+      ? low = mid + 1
+      : high = mid;
+  }
+  return low;
 };
 
 module.exports = _;

@@ -676,4 +676,13 @@ describe('_', () => {
       expect(actual).to.eql(expected);
     });
   });
+  describe('#difference', () => {
+    it('returns the values from the array that are not present in the others', () => {
+      const arr = [1, 2, 3, 4, 5];
+      const others = [5, 2, 10];
+      const actual = _.difference(arr, others);
+      const expected = [1, 3, 4];
+      expect(actual).to.eql(expected);
+    });
+  });
 });

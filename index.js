@@ -231,7 +231,9 @@ _.intersection = function (...list) {
   }, []);
 };
 
-
-
+_.difference = function (array, ...others) {
+  return _.filter(array, item => 
+    _.every(others, other => !_.contains(other, item)));
+};
 
 module.exports = _;

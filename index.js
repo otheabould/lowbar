@@ -223,4 +223,11 @@ _.flatten = function (array, shallow) {
     : acc.concat(item), []);
 };
 
+_.intersection = function (...list) {
+  return _.filter(list[0], (item) =>
+    _.every(list, (array) => _.contains(array, item)));
+};
+
+
+
 module.exports = _;

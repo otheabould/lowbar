@@ -711,4 +711,39 @@ describe('_', () => {
       expect(spy).to.have.been.calledOnce;
     });
   });
+  describe('#delay', () => {
+    it('calls the given function after the wait period', () => {
+      const spy = sinon.spy();
+      const clock = sinon.useFakeTimers();
+      _.delay(spy, 100);
+      clock.tick(99);
+      expect(spy).to.not.have.been.called;
+      clock.tick(2);
+      expect(spy).to.have.been.calledOnce;
+    });
+    it('calls the given function after the wait period', () => {
+      const spy = sinon.spy();
+      const clock = sinon.useFakeTimers();
+      _.delay(spy, 100, 1, 2);
+      clock.tick(100);
+      expect(spy.calledWith(1, 2)).to.be.true;
+    });
+  });
+  describe('#where', () => {
+    it('returns an array of all the values containing key value pairs given', () => {
+      const list = [
+        {name: 'oli', age: 24, type: 'human'},
+        {name: 'pete', age: 24, type: 'human'},
+        {name: 'paul', age: 24, type: 'dolphin'},
+        {name: 'tom', age: 500, type: 'dark lord'},
+      ];
+      const properties = {age: 24, type: 'human'};
+      const actual = _.where(list, properties);
+      const expected = [
+        {name: 'oli', age: 24, type: 'human'},
+        {name: 'pete', age: 24, type: 'human'}
+      ];
+      expect(actual).to.eql(expected);
+    });
+  });
 });

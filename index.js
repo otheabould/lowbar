@@ -241,11 +241,20 @@ _.memoize = function (func) {
   return function() {
     const key = arguments[0];
     if (!(key in cache)) {
-      cache[key] = func.apply(this, arguments);
+      cache[key] = func.apply(null, arguments);
     }
 
     return cache[key];
   };
+};
+
+_.delay = function (func, wait, ...args) {
+  setTimeout(() => func.apply(null, args), wait);
+};
+
+_.where = function (list, properties) {
+  return _.filter(list, obj => 
+    _.every(properties, (value, key) => obj[key] === value));
 };
 
 module.exports = _;

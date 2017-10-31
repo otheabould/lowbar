@@ -765,5 +765,21 @@ describe('_', () => {
       throttled(10);
       expect(spy.callCount).to.equal(1);
     });
+    it('can call the function agai nafter the timer runs out', () => {
+      const spy = sinon.spy();
+      const clock = sinon.useFakeTimers();
+      const throttled = _.throttle(spy, 100);
+      throttled(10);
+      expect(spy.callCount).to.equal(1);
+      clock.tick(50);
+      throttled(10);
+      expect(spy.callCount).to.equal(1);
+      clock.tick(50);
+      throttled(10);
+      expect(spy.callCount).to.equal(2);
+      clock.tick(50);
+      throttled(10);
+      expect(spy.callCount).to.equal(2);
+    });
   });
 });

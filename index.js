@@ -258,7 +258,15 @@ _.where = function (list, properties) {
 };
 
 _.throttle = function (func, wait) {
-  return func.apply(this, arguments);
+  let waiting = false, result;
+  return function () {
+    if (!waiting) {
+      waiting = true
+      result = func.apply(this, arguments);
+      setTimeout(() => waiting = false, wait);
+    }
+    return result;
+  };
 };
 
 module.exports = _;

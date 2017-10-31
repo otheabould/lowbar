@@ -747,12 +747,23 @@ describe('_', () => {
     });
   });
   describe('#throttle', () => {
-    it('creates a new throttled version of the passed function', () => {
+    it('calls the passed function', () => {
       const spy = sinon.spy();
-      _.throttle(spy, 100);
-      const actual = spy.callCount;
-      const expected =  1;
-      expect(actual).to.equal(expected);
+      const throttled = _.throttle(spy, 100);
+      expect(spy.callCount).to.equal(0);
+      throttled(10);
+      expect(spy.callCount).to.equal(1);
+      expect(spy.args).to.eql([[10]]);
+    });
+    it('calls the function once in the specified wait time', () => {
+      const spy = sinon.spy();
+      const clock = sinon.useFakeTimers();
+      const throttled = _.throttle(spy, 100);
+      throttled(10);
+      clock.tick(90);
+      expect(spy.callCount).to.equal(1);
+      throttled(10);
+      expect(spy.callCount).to.equal(1);
     });
   });
 });

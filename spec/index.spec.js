@@ -746,4 +746,13 @@ describe('_', () => {
       expect(actual).to.eql(expected);
     });
   });
+  describe('#throttle', () => {
+    it('creates a new throttled version of the passed function', () => {
+      const spy = sinon.spy();
+      _.throttle(spy, 100);
+      const actual = spy.callCount;
+      const expected =  1;
+      expect(actual).to.equal(expected);
+    });
+  });
 });

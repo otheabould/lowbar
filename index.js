@@ -257,4 +257,8 @@ _.where = function (list, properties) {
     _.every(properties, (value, key) => obj[key] === value));
 };
 
+_.throttle = function (func, wait) {
+  return func.apply(this, arguments);
+};
+
 module.exports = _;

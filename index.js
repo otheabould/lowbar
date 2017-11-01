@@ -270,9 +270,18 @@ _.throttle = function (func, wait) {
 };
 
 _.partial = function (func, ...args) {
-  console.log(args);
+  const prevArgs = args;
   return function () {
-    return func.apply(this, args);
+    const nextArgs = Array.from(arguments);
+    const length = prevArgs.length + nextArgs.length;
+    const argsResult = _.map(Array(length), () => {
+      if (prevArgs.length) {
+        let arg = prevArgs.shift();
+        return arg !== _ ? arg : nextArgs.shift();
+      }
+      return nextArgs.shift();
+    });
+    return func.apply(null, argsResult);
   };
 };
 

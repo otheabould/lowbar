@@ -815,11 +815,20 @@ describe('_', () => {
     });
   });
   describe('#partial', () => {
-    it('partially applies a function be filling in a given argument', () => {
-      const func = (a) => a;
-      const sub = _.partial(func, 6);
-      const actual = sub();
-      const expected = 6;
+    it('calls the function with a given argument', () => {
+      const spy = sinon.spy();
+      const sub = _.partial(spy, 6);
+      sub();
+      const actual = spy.calledWith(6);
+      const expected = true;
+      expect(actual).to.equal(expected);
+    });
+    it('calls the function with the previous and current passed arguments', () => {
+      const spy = sinon.spy();
+      const sub = _.partial(spy, 6);
+      sub(8);
+      const actual = spy.calledWith(6, 8);
+      const expected = true;
       expect(actual).to.equal(expected);
     });
   });

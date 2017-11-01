@@ -187,8 +187,8 @@ _.sortBy = function (list, iteratee, context = this) {
   const arr = _.map(list);
   const compare = (a, b) => a < b ? - 1 : b < a ? 1 : 0;
   return typeof iteratee === 'string'
-  ? arr.sort((a, b) => compare(a[iteratee], b[iteratee]))
-  : arr.sort((a, b) => compare(iteratee.call(context, a), iteratee.call(context, b)));
+    ? arr.sort((a, b) => compare(a[iteratee], b[iteratee]))
+    : arr.sort((a, b) => compare(iteratee.call(context, a), iteratee.call(context, b)));
 };
 
 _.zip = function (...list) {

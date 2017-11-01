@@ -831,5 +831,11 @@ describe('_', () => {
       const expected = true;
       expect(actual).to.equal(expected);
     });
+    it('passes the new arguments in place of the _', () => {
+      const cube = _.partial(Math.pow, _, 3);
+      const actual = cube(4);
+      const expected = 64;
+      expect(actual).to.equal(expected);
+    });
   });
 });

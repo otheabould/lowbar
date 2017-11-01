@@ -269,4 +269,11 @@ _.throttle = function (func, wait) {
   };
 };
 
+_.partial = function (func, ...args) {
+  console.log(args);
+  return function () {
+    return func.apply(this, args);
+  };
+};
+
 module.exports = _;

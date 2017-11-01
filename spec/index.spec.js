@@ -721,7 +721,7 @@ describe('_', () => {
       clock.tick(2);
       expect(spy).to.have.been.calledOnce;
     });
-    it('calls the given function after the wait period', () => {
+    it('calls the delayed function with the given arguments', () => {
       const spy = sinon.spy();
       const clock = sinon.useFakeTimers();
       _.delay(spy, 100, 1, 2);
@@ -812,6 +812,15 @@ describe('_', () => {
       clock.tick(50 );
       throttled(10);
       expect(spy.callCount).to.equal(2);
+    });
+  });
+  describe('#partial', () => {
+    it('partially applies a function be filling in a given argument', () => {
+      const func = (a) => a;
+      const sub = _.partial(func, 6);
+      const actual = sub();
+      const expected = 6;
+      expect(actual).to.equal(expected);
     });
   });
 });

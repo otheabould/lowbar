@@ -761,6 +761,22 @@ describe('_', () => {
       ];
       expect(actual).to.eql(expected);
     });
+    it('returns every list item if no properties are given', () => {
+      const list = [
+        {name: 'oli', age: 24, type: 'human'},
+        {name: 'pete', age: 24, type: 'human'},
+        {name: 'paul', age: 24, type: 'dolphin'},
+        {name: 'tom', age: 500, type: 'dark lord'},
+      ];
+      const actual = _.where(list);
+      const expected = [
+        {name: 'oli', age: 24, type: 'human'},
+        {name: 'pete', age: 24, type: 'human'},
+        {name: 'paul', age: 24, type: 'dolphin'},
+        {name: 'tom', age: 500, type: 'dark lord'},
+      ];
+      expect(actual).to.eql(expected);
+    });
   });
   describe('#throttle', () => {
     it('calls the passed function', () => {

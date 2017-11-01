@@ -730,7 +730,7 @@ describe('_', () => {
     });
   });
   describe('#where', () => {
-    it('returns an array of all the values containing key value pairs given', () => {
+    it('returns an array of the objects that match multiple given key value pairs', () => {
       const list = [
         {name: 'oli', age: 24, type: 'human'},
         {name: 'pete', age: 24, type: 'human'},
@@ -742,6 +742,22 @@ describe('_', () => {
       const expected = [
         {name: 'oli', age: 24, type: 'human'},
         {name: 'pete', age: 24, type: 'human'}
+      ];
+      expect(actual).to.eql(expected);
+    });
+    it('returns an array of the objects that match a single given key value pair', () => {
+      const list = [
+        {name: 'oli', age: 24, type: 'human'},
+        {name: 'pete', age: 24, type: 'human'},
+        {name: 'paul', age: 24, type: 'dolphin'},
+        {name: 'tom', age: 500, type: 'dark lord'},
+      ];
+      const properties = {age: 24};
+      const actual = _.where(list, properties);
+      const expected = [
+        {name: 'oli', age: 24, type: 'human'},
+        {name: 'pete', age: 24, type: 'human'},
+        {name: 'paul', age: 24, type: 'dolphin'},
       ];
       expect(actual).to.eql(expected);
     });
@@ -765,7 +781,7 @@ describe('_', () => {
       throttled(10);
       expect(spy.callCount).to.equal(1);
     });
-    it('can call the function agai nafter the timer runs out', () => {
+    it('can call the function again after the timer runs out', () => {
       const spy = sinon.spy();
       const clock = sinon.useFakeTimers();
       const throttled = _.throttle(spy, 100);
@@ -777,7 +793,7 @@ describe('_', () => {
       clock.tick(50);
       throttled(10);
       expect(spy.callCount).to.equal(2);
-      clock.tick(50);
+      clock.tick(50 );
       throttled(10);
       expect(spy.callCount).to.equal(2);
     });

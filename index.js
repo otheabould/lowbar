@@ -261,7 +261,7 @@ _.throttle = function (func, wait) {
   let waiting = false, result;
   return function () {
     if (!waiting) {
-      waiting = true
+      waiting = true;
       result = func.apply(this, arguments);
       setTimeout(() => waiting = false, wait);
     }

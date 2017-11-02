@@ -837,5 +837,12 @@ describe('_', () => {
       const expected = 64;
       expect(actual).to.equal(expected);
     });
+    it('returns the expected outcome', () => {
+      const subtract = (a, b) => b - a;
+      const subFrom20 = _.partial(subtract, _, 20);
+      const actual = subFrom20(5);
+      const expected = 15;
+      expect(actual).to.equal(expected);
+    });
   });
 });

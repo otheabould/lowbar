@@ -15,7 +15,7 @@ node -v
  If you do not have node installed, refer to [this guide](https://nodejs.org/en/download/package-manager/) for installation instructions. 
 
 
-To confirm you have npm installed on your machine, run the following code:
+To confirm you have npm installed, run the following code:
 
 ```
 npm -v

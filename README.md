@@ -1,6 +1,6 @@
 # Lowbar
 
-A reimplementation of the [Underscore library](http://underscorejs.org/) with TDD.
+A reimplementation of the [Underscore library](http://underscorejs.org/) practicing TDD.
 
 ## Setup
 
@@ -12,7 +12,7 @@ Run this command in your terminal to check you have node installed:
 node -v
 ```
 
- You do not have node installed, refer to [this guide](https://nodejs.org/en/download/package-manager/)for installation instructions. 
+ If you do not have node installed, refer to [this guide](https://nodejs.org/en/download/package-manager/) for installation instructions. 
 
 
 To confirm you have npm installed on your machine, run the following code:

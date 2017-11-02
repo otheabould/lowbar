@@ -21,7 +21,7 @@ To confirm you have npm installed, run the following code:
 npm -v
 ```
 
-To get npm installed, follow [this guide](https://www.npmjs.com/get-npm]).
+To get npm installed, follow [this guide](https://www.npmjs.com/get-npm).
 
 ___
 

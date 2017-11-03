@@ -1,6 +1,6 @@
 # Lowbar
 
-A reimplementation of the [Underscore library](http://underscorejs.org/) practicing TDD.
+A TDD reimplementation of the [Underscore library](http://underscorejs.org/).
 
 ## Setup
 

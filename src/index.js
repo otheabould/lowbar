@@ -270,13 +270,11 @@ _.throttle = function (func, wait) {
 };
 
 _.partial = function (func, ...args) {
-  const prevArgs = args;
-  return function () {
-    const nextArgs = Array.from(arguments);
-    const length = prevArgs.length + nextArgs.length;
+  return function (...nextArgs) {
+    const length = args.length + nextArgs.length;
     const argsResult = _.map(Array(length), () => {
-      if (prevArgs.length) {
-        let arg = prevArgs.shift();
+      if (args.length) {
+        const arg = args.shift();
         return arg !== _ ? arg : nextArgs.shift();
       }
       return nextArgs.shift();

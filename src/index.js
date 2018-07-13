@@ -220,11 +220,11 @@ _.sortedIndex = function (list, value, iteratee = _.identity, context = this) {
 };
 
 _.flatten = function (array, shallow) {
-  return _.reduce(array, (acc, item) => shallow
-  ? acc.concat(item) 
-  : Array.isArray(item)
-    ? _.flatten(acc.concat(item)) 
-    : acc.concat(item), []);
+  return _.reduce(array, (acc, item) => {
+    if (shallow) return acc.concat(item);
+    if (Array.isArray(item)) return _.flatten(acc.concat(item));
+    return acc.concat(item);
+  }, []);
 };
 
 _.intersection = function (...list) {

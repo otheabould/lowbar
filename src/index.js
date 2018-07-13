@@ -185,10 +185,14 @@ _.invoke = function (list, method, ...args) {
 
 _.sortBy = function (list, iteratee, context = this) {
   const arr = _.map(list);
-  const compare = (a, b) => a < b ? - 1 : b < a ? 1 : 0;
-  return typeof iteratee === 'string'
-    ? arr.sort((a, b) => compare(a[iteratee], b[iteratee]))
-    : arr.sort((a, b) => compare(iteratee.call(context, a), iteratee.call(context, b)));
+  const compare = (a, b) => {
+    if (a == b) return 0;
+    return a < b ? - 1 : 1;
+  };
+  
+  if (typeof iteratee === 'string') 
+    return arr.sort((a, b) => compare(a[iteratee], b[iteratee]));
+  return arr.sort((a, b) => compare(iteratee.call(context, a), iteratee.call(context, b)));
 };
 
 _.zip = function (...list) {

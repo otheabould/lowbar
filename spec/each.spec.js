@@ -26,4 +26,8 @@ describe('#each', () => {
     _.each(['a', 'b', 'c'], getSum, context);
     expect(sum).to.equal(6);
   });
+  it('does not error without an iteratee passed', () => {
+    var expected = _.each(['a', 'b', 'c']);
+    expect(expected).to.eql(['a', 'b', 'c']);
+  });
 });

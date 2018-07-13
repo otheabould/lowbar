@@ -18,7 +18,7 @@ _.last = function (list, n) {
     : list.split('').slice(- n);
 };
 
-_.each = function (list, iteratee, context = this) {
+_.each = function (list, iteratee = _.identity, context = this) {
   if (list && list.length) {
     for (let i = 0; i < list.length; i++) {
       iteratee.call(context, list[i], i, list);

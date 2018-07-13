@@ -279,7 +279,7 @@ _.partial = function (func, ...args) {
     const argsResult = _.map(Array(length), () => {
       if (args.length) {
         const arg = args.shift();
-        return arg !== _ ? arg : nextArgs.shift();
+        if (arg !== _ ) return arg;
       }
       return nextArgs.shift();
     });
